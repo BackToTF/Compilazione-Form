@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form da compilare</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #0a0f29; /* Blu notte */
+            color: white; /* Testo bianco per contrasto */
+        }
+        .table-container {
+            max-height: 400px;
+            overflow-y: auto;
+            margin-top: 50px; /* Sposta la tabella più in basso */
+        }
+        .button-container {
+            margin-top: 50px; /* Sposta il bottone più in basso */
+        }
+        .banner {
+            background-color: #f8f9fa;
+            border-left: 1px solid #dee2e6;
+            padding: 0;
+            height: 100vh;
+            color: black;
+            text-align: center;
+        }
+        .banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .logo {
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+        }
+        .form-container {
+            margin-top: 50px; /* Sposta il form più in basso */
+        }
+        .data-table-container {
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="logo">Azienda</div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="container">
+                    <div class="row">
+                        <div class="col form-container">
+                            <h2>Inserisci qui i tuoi dati:</h2>
+                            <form id="dataForm">
+                                <div class="mb-3">
+                                    <label for="campo1" class="form-label">Nome e Cognome</label>
+                                    <input type="text" class="form-control" id="campo1" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="campo2" class="form-label">Ragione Sociale</label>
+                                    <input type="text" class="form-control" id="campo2" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="campo3" class="form-label">Indirizzo</label>
+                                    <input type="text" class="form-control" id="campo3" required>
+                                </div>
+                                <button type="button" class="btn btn-primary" onclick="aggiungiDati()">Aggiungi</button>
+                            </form>
+                            <div class="data-table-container">
+                                <h3>Dati Inseriti</h3>
+                                <table class="table table-dark table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Nome e Cognome</th>
+                                            <th>Ragione Sociale</th>
+                                            <th>Indirizzo</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="dataBody">
+                                        <!-- Qui verranno aggiunti i dati dinamicamente -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="banner">
+                    <img src="https://areacontact.it/wp-content/uploads/2022/02/ufficio-organizzato.jpg" alt="Ufficio con scrivania e vetrate">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function aggiungiDati() {
+            let campo1 = document.getElementById("campo1").value;
+            let campo2 = document.getElementById("campo2").value;
+            let campo3 = document.getElementById("campo3").value;
+            
+            if (campo1 && campo2 && campo3) {
+                let tableBody = document.getElementById("dataBody");
+                let newRow = `<tr><td>${campo1}</td><td>${campo2}</td><td>${campo3}</td></tr>`;
+                tableBody.innerHTML += newRow;
+                
+                document.getElementById("dataForm").reset();
+            }
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
